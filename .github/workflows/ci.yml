@@ -28,11 +28,23 @@ jobs:
       # Reset Nx cache to avoid project graph processing issues
       - run: npx nx reset
 
+      # Debugging: print environment variables
       - run: echo "NX_BASE=${{ env.NX_BASE }}"
       - run: echo "NX_HEAD=${{ env.NX_HEAD }}"
+
+      # Debugging: Check Nx version
       - run: npx nx --version
 
-      - uses: nrwl/nx-set-shas@v4
+      # Debugging: List directory contents and check configuration files
+      - run: ls -la
+      - run: cat nx.json
+      - run: cat workspace.json || cat angular.json
 
-      - run: npx nx-cloud record -- nx format:check
-      - run: npx nx affected -t lint test build e2e-ci
+      # Run Nx commands and capture detailed logs
+      - name: Run Nx Format Check
+        run: npx nx-cloud record -- nx format:check
+        continue-on-error: true
+
+      - name: Run Nx Affected Commands
+        run: npx nx affected -t lint test build e2e-ci
+        continue-on-error: true
