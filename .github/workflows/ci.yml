@@ -31,21 +31,11 @@ jobs:
           echo "NX_BASE=$(git merge-base origin/main HEAD)" >> $GITHUB_ENV
           echo "NX_HEAD=$(git rev-parse HEAD)" >> $GITHUB_ENV
 
-      # Reset Nx cache to avoid project graph processing issues
-      - run: npx nx reset
 
-      # Debugging: print environment variables
-      - run: echo "NX_BASE=${{ env.NX_BASE }}"
-      - run: echo "NX_HEAD=${{ env.NX_HEAD }}"
-
-      # Debugging: Check Nx version
-      - run: npx nx --version
-
-
-      # Run Nx commands and capture detailed logs
-      - name: Run Nx Format Check
-        run: npx nx-cloud record -- nx format:check
-        continue-on-error: true
+      # # Run Nx commands and capture detailed logs
+      # - name: Run Nx Format Check
+      #   run: npx nx-cloud record -- nx format:check
+      #   continue-on-error: true
 
       - name: Run Nx Affected Commands
         run: npx nx affected -t lint test build e2e-ci
