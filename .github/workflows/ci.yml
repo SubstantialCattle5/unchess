@@ -25,6 +25,12 @@ jobs:
       # Ensure Nx CLI is installed
       - run: npm install -g nx
 
+      # Set NX_BASE and NX_HEAD environment variables
+      - name: Set NX_BASE and NX_HEAD
+        run: |
+          echo "NX_BASE=$(git merge-base origin/main HEAD)" >> $GITHUB_ENV
+          echo "NX_HEAD=$(git rev-parse HEAD)" >> $GITHUB_ENV
+
       # Reset Nx cache to avoid project graph processing issues
       - run: npx nx reset
 
@@ -35,10 +41,6 @@ jobs:
       # Debugging: Check Nx version
       - run: npx nx --version
 
-      # Debugging: List directory contents and check configuration files
-      - run: ls -la
-      - run: cat nx.json
-      - run: cat workspace.json || cat angular.json
 
       # Run Nx commands and capture detailed logs
       - name: Run Nx Format Check
