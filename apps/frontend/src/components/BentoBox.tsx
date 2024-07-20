@@ -5,32 +5,36 @@ import {
   IconSignature,
   IconTableColumn,
 } from "@tabler/icons-react";
-import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
+import { BentoGrid, BentoGridItem, BentoGridItemFriendList } from "./ui/bento-grid";
 
 export function BentoBox() {
   return (
     <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
       {items.map((item, i) => (
-        <BentoGridItem
-          key={i}
-          title={item.title}
-          description={item.description}
-          header={item.header}
-          className={item.className}
-          icon={item.icon}
-        />
+        i === 1 ? (
+          <BentoGridItemFriendList
+            key={i}
+          />
+        ) : (
+          <BentoGridItem
+            key={i}
+            title={item.title}
+            description={item.description}
+            header={item.header}
+            className={item.className}
+            icon={item.icon}
+          />
+        )
       ))}
     </BentoGrid>
   );
 }
+
 const Skeleton = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl   dark:bg-dot-white/[0.2] bg-dot-black/[0.2] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]  border border-transparent dark:border-white/[0.2] bg-neutral-100 dark:bg-black"></div>
+  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl dark:bg-dot-white/[0.2] bg-dot-black/[0.2] [mask-image:radial-gradient(ellipse_at_center,white,transparent)] border border-transparent dark:border-white/[0.2] bg-neutral-100 dark:bg-black"></div>
 );
-const Skeleton2 = () => (
-  <div className=" dark:bg-black ">
-    hello
-  </div>
-);
+
+
 const items = [
   {
     title: "The Dawn of Innovation",
@@ -42,7 +46,7 @@ const items = [
   {
     title: "Friend Recent Activity",
     description: "Dive into the transformative power of technology.",
-    header: <Skeleton />,
+    header: <BentoGridItemFriendList />,
     className: "md:col-span-1",
     icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
   },
@@ -57,7 +61,7 @@ const items = [
     title: "The Power of Communication",
     description:
       "Understand the impact of effective communication in our lives.",
-    header: <Skeleton2 />,
+    header: <Skeleton />,
     className: "md:col-span-2",
     icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
   },
