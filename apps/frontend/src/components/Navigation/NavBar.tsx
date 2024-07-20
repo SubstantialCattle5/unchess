@@ -1,11 +1,11 @@
 import React from 'react'
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from './ui/BreadCrumb'
 import { Search } from 'lucide-react'
-import { Input } from './ui/Input'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
-import { Button } from './ui/Button'
 import Image from "next/image"
 import Link from 'next/link'
+import { Input } from '../ui/Input'
+import { Button } from '../ui/Button'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '../ui/BreadCrumb'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/dropdown-menu'
 
 export const NavBar = () => {
     return (

@@ -1,5 +1,6 @@
 "use client"
-import Sidebar from "../../components/SideBar"
+
+import Sidebar from "../../components/Navigation/SideBar"
 
 export default function DashboardLayout({
     children,
